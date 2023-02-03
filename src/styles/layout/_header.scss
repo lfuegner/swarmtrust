@@ -1,0 +1,15 @@
+@use "../abstract";
+
+.navbar {
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    background-color: abstract.$grey;
+}
+
+.nav-list{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
