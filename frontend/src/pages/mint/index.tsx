@@ -4,9 +4,9 @@ import Header from '../../components/header'
 import styles from '../../styles/Mint.module.scss'
 import { useState } from 'react' 
 import {ethers, BigNumber} from 'ethers';
-//import poap from '.Poap.json';
+import poap from './SWRMPP.json';
 
- const poapAddress = "" //from Etherscan
+ const poapAddress = "0x7e25d7Ff02cC2057EcF8D2FBf5d053619CE7b541" //from Etherscan
 
 
 export default function Mint() {
@@ -38,7 +38,9 @@ export default function Mint() {
         signer
       );
       try{
-        const response = await contract.mint(BigNumber.from(mintAmount));
+        const response = await contract.mint(BigNumber.from(mintAmount), {
+          value: ethers.utils.parseEther((0.02 * mintAmount).toString())
+        });
         console.log('response: ',response)
       } catch (err) {
         console.log('error: ',err)
