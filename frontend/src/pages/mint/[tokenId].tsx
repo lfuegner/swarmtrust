@@ -1,15 +1,28 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
-
+import styles from '../../styles/Mint.module.scss'
 import Header from '../../components/header'
+import { addAffiliate} from '@/firebase/controller'
+import { useState } from 'react'
 
 
 
 export default function Mint() {
   const router = useRouter()
   const result = router.query.tokenId
-
+  const [affiliateNumber, setAffiliateNumber] = useState<number>(1)
   const tokenId:number = parseInt(result as string, 10)
+
+console.log(tokenId)
+  
+
+  async function testFirebase(){
+    addAffiliate({
+      affiliateNumber,
+      tokenId,
+    });
+  }
+
 
   while(isNaN(tokenId)){
 
@@ -35,12 +48,19 @@ export default function Mint() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={styles.body}>
           <Header/>
-            <h1>TokenID: {tokenId}</h1>
+          <div className={styles.main}>
+          <h1 className={styles.h1}>TokenID: {tokenId}</h1>
+          </div>
+          <button
+          className={styles.button}
+          onClick={testFirebase}>Füge TokenId: {tokenId} hinzu</button>
+            
 
         
       </main>
     </>
   )
 }
+

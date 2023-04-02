@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@firebase/firestore": "^3.9.0",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@metamask/providers": "^10.2.1",
     "@react-three/drei": "^9.56.25",

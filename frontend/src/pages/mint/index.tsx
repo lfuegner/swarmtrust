@@ -2,9 +2,11 @@ import {useRouter} from 'next/router'
 import Head from 'next/head'
 import Header from '../../components/header'
 import styles from '../../styles/Mint.module.scss'
-import { useState } from 'react' 
+import { useState, useEffect} from 'react' 
 import {ethers, BigNumber} from 'ethers';
 import poap from './SWRMPP.json';
+import { addAffiliate, affiliateCollection } from '@/firebase/controller'
+import { onSnapshot } from 'firebase/firestore'
 
  const poapAddress = "0x7e25d7Ff02cC2057EcF8D2FBf5d053619CE7b541" //from Etherscan
 
@@ -18,6 +20,12 @@ export default function Mint() {
   const [accounts, setAccounts] = useState([])
   const [mintAmount, setMintAmount] = useState(1)
   const isConnected = Boolean(accounts[0]);
+
+  const [affiliateNumber, setAffiliateNumber] = useState<number>(111)
+  const [tokenId, setTokenId] = useState<number>(111)
+  useEffect(()=> onSnapshot(affiliateCollection, (snapshot) => {
+    console.log(snapshot)
+  }))
 
   async function connectAccount() {
     if (window.ethereum) {
@@ -41,11 +49,24 @@ export default function Mint() {
         const response = await contract.mint(BigNumber.from(mintAmount), {
           value: ethers.utils.parseEther((0.02 * mintAmount).toString())
         });
+        await addAffiliate({
+          affiliateNumber,
+          tokenId,
+        });
         console.log('response: ',response)
       } catch (err) {
         console.log('error: ',err)
       }
     }
+  }
+
+  
+
+  async function testFirebase(){
+    addAffiliate({
+      affiliateNumber,
+      tokenId,
+    });
   }
 
   return (
@@ -62,22 +83,27 @@ export default function Mint() {
 
           
           <div className={styles.main}>
-          {isConnected ? (
-          <p>Connected</p>) : (
-          <button
+          {isConnected ? 
+          (<p>Connected</p>) : 
+          (<button
             className={styles.button}
             onClick={connectAccount}>
             Connect
-            </button>)}
+          </button>)
+          }
             
-            {isConnected ? (<button
+          {isConnected ? 
+          (<button
             className={styles.button}
             onClick={handleMint}>
             Mint
-            </button>) : (
-              <p> You must be connected</p>
-            )
-            }
+          </button>) : (
+          <p> You must be connected</p>)
+          }
+
+          <button className={styles.button} onClick={testFirebase}>
+            Firestore Eintrag
+          </button>
             
           </div>
       </main>
