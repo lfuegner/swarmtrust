@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import styles from '../styles/components/Traits.module.scss'
 
 //class hinzufügen hidden (display: none !important)
 
@@ -20,35 +19,39 @@ export function Trait() {
         infoSwitchToggled? setInfoSwitchToggeld(false) : setInfoSwitchToggeld(true);
     }
 
+    const trait:string = "flex justify-between items-center px-4 h-12 text-white" 
+    const region:string = "pt-0 px-4 pb-5"
+    const hidden:string = "hidden"
+    const separator:string = "w-full border-b border-gray-500 border-solid  opacity-60"
 
 
     return (
-        <div className={styles.wrapper}>
-                <div className={styles.trait}>
+        <div className="flex flex-col">
+                <div className={trait}>
                     <h3>Poap Traits</h3>
                     <button
                     onClick={TraitSwitch}>Arrow</button>
                 </div>
 
-                <div className={traitSwitchToggled ? styles.region : styles.hidden}>
+                <div className={traitSwitchToggled ? region : hidden}>
                     <ColorTrait />
                     <AnimalTrait />
                     <FibonacciTrait />
                 </div>
                 
-                <hr className={styles.separator}></hr>
+                <hr className={separator}></hr>
 
-                <div className={styles.trait}>
+                <div className={trait}>
                     <h3>Information</h3>
                     <button
                     onClick={InfoSwitch}>Arrow</button>
                 </div>
 
-                <div className={infoSwitchToggled ? styles.region : styles.hidden}>
+                <div className={infoSwitchToggled ? region : hidden}>
                     <h1>{color}, {animal}, {fibonacci}</h1>
                 </div>
 
-                <hr className={styles.separator}></hr>
+                <hr className={separator}></hr>
             </div>
     )
 }
@@ -56,32 +59,37 @@ export function Trait() {
 function ColorTrait({}) {
 
     const [color, setColor] = useState('black');
+
+    const h4:string = "text-white font-normal opacity-50"
+    const input:string = "absolute w-px h-px"
+    const button:string = "flex justify-center items-center text-sm font-semibold rounded-lg bg-gray-500 h-16 cursor-pointer"
+    const radiogroup:string = "grid grid-cols-[auto-fit_minmax(25%,_1fr)] p-1 bg-gray-500  rounded-lg"
     
 
     return(
         <div>
-            <h4 className={styles.h4}>Color Trait: {color}</h4>
-            <div className={styles.radiogroup} role='radiogroup'>
+            <h4 className={h4}>Color Trait: {color}</h4>
+            <div className={radiogroup} role='radiogroup'>
                 {/*Color Label: Black */}
                 <label>
-                    <input className={styles.input} 
+                    <input className={input} 
                     type='radio' 
                     name='Color Trait' 
                     value='black'
                     onChange={e=>setColor(e.target.value)}>    
                     </input>
-                    <div className={styles.button}></div>
+                    <div className={button}></div>
                 </label>
 
                 {/*Color Label: White */}
                 <label>
-                    <input className={styles.input} 
+                    <input className={input} 
                     type='radio' 
                     name='Color Trait' 
                     value='white' 
                     onChange={e=>setColor(e.target.value)}>
                     </input>
-                    <div className={styles.button}></div>
+                    <div className={button}></div>
                 </label>
 
             </div>
@@ -92,21 +100,26 @@ function ColorTrait({}) {
 function AnimalTrait() {
 
     const [animal, setAnimal] = useState('Whale')
+
+    const h4:string = "text-white font-normal opacity-50"
+    const input:string = "absolute w-px h-px"
+    const button:string = "flex justify-center items-center text-sm font-semibold rounded-lg bg-gray-500 h-16 cursor-pointer"
+    const radiogroup:string = "grid grid-cols-[auto-fit_minmax(25%,_1fr)] p-1 bg-gray-500  rounded-lg"
     
     return(
         <div>
-            <h4 className={styles.h4}>Animal Trait: {animal}</h4>
-            <div className={styles.radiogroup} role='radiogroup'>
+            <h4 className={h4}>Animal Trait: {animal}</h4>
+            <div className={radiogroup} role='radiogroup'>
                 {/*Color Label: Whale */}
                 <label>
                     <input 
-                    className={styles.input} 
+                    className={input} 
                     type='radio' 
                     name='Animal Trait' 
                     value='Whale'
                     onChange={e => setAnimal(e.target.value)}>
                     </input>
-                    <div className={styles.button}>
+                    <div className={button}>
                     <div>
                             <div>
                                 <span>Whale</span>
@@ -117,12 +130,12 @@ function AnimalTrait() {
 
                 {/*Color Label: Shark */}
                 <label>
-                    <input className={styles.input} 
+                    <input className={input} 
                     type='radio' 
                     name='Animal Trait' 
                     value='Shark' 
                     onChange={event=>setAnimal(event.target.value)}></input>
-                    <div className={styles.button}>
+                    <div className={button}>
                     <div>
                             <div>
                                 <span>Shark</span>
@@ -133,13 +146,13 @@ function AnimalTrait() {
 
                 {/*Color Label: Flipper */}
                 <label>
-                    <input className={styles.input} 
+                    <input className={input} 
                     type='radio' 
                     name='Animal Trait' 
                     value='Flipper' 
                     onChange={e=>setAnimal(e.target.value)}>
                     </input>
-                    <div className={styles.button}>
+                    <div className={button}>
                         <div>
                             <div>
                                 <span>Flipper</span>
@@ -150,12 +163,12 @@ function AnimalTrait() {
 
                 {/*Color Label: Sea eagle */}
                 <label>
-                    <input className={styles.input} 
+                    <input className={input} 
                     type='radio' 
                     name='Animal Trait' 
                     value='Sea eagle' 
                     onChange={e=>setAnimal(e.target.value)}></input>
-                    <div className={styles.button}>
+                    <div className={button}>
                         <div>
                             <div>
                                 <span>Sea Eagle</span>
@@ -171,30 +184,35 @@ function AnimalTrait() {
 function FibonacciTrait() {
 
     const [fibonacci, setFibonacci] = useState('off')
+
+    const h4:string = "text-white font-normal opacity-50"
+    const input:string = "absolute w-px h-px"
+    const button:string = "flex justify-center items-center text-sm font-semibold rounded-lg bg-gray-500 h-16 cursor-pointer"
+    const radiogroup:string = "grid grid-cols-[auto-fit_minmax(25%,_1fr)] p-1 bg-gray-500  rounded-lg"
     return(
         <div>
-            <h4 className={styles.h4}>Fibonacci Trait: {fibonacci}</h4>
-            <div className={styles.radiogroup} role='radiogroup'>
+            <h4 className={h4}>Fibonacci Trait: {fibonacci}</h4>
+            <div className={radiogroup} role='radiogroup'>
                 {/*Color Label: Off */}
                 <label>
-                    <input className={styles.input} 
+                    <input className={input} 
                     type='radio' 
                     name='color trait' 
                     value='off'
                     onChange={e => setFibonacci(e.target.value)}>
                     </input>
-                    <div className={styles.button}></div>
+                    <div className={button}></div>
                 </label>
 
                 {/*Color Label: On */}
                 <label>
-                    <input className={styles.input} 
+                    <input className={input} 
                     type='radio' 
                     name='color trait' 
                     value='on' 
                     onChange={e => setFibonacci(e.target.value)}>
                     </input>
-                    <div className={styles.button}></div>
+                    <div className={button}></div>
                 </label>
 
             </div>

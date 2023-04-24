@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Header from '../components/header'
-import styles from '../styles/Privacy.module.scss'
 
 export default function Impressum() {
 
@@ -12,13 +11,13 @@ export default function Impressum() {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <div className={styles.body}>
+        <main>
           <Header />
-        <main className={styles.main}>
-            <h1 className={styles.h1}>Impressum</h1>
-            <span className={styles.underline}></span>
-            <h2 className={styles.h2}>Information according to §5 TGM</h2>
-            <p className={styles.text}>
+        <div className="flex flex-col px-12 pt-16 w-screen font-sans">
+            <h1 className="text-5xl font-bold">Impressum</h1>
+            <span className="my-4 w-full h-px bg-gray-700"></span>
+            <h2 className="text-2xl font-semibold">Information according to §5 TGM</h2>
+            <p className="mt-4">
             Griesheimer Erbschafts- und Vermögensberatung UG (haftungsbeschränkt)<br/>
             <br/>
             Pfützenstraße 22<br/>
@@ -35,8 +34,8 @@ export default function Impressum() {
             Tax ID according to § 27a UStG: DE 330540114
             </p>
           
-        </main>
         </div>
+        </main>
       </>
     )
   }

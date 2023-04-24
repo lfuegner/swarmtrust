@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Header from '../components/header'
-import styles from '../styles/Home.module.scss'
 
 export default function Home() {
+
+  const cssContainer = "flex items-center w-screen h-60"
+  const cssH1 ="text-2xl text-black"
 
   return (
     <>
@@ -12,25 +14,23 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.body}>
+      <main className="box-border flex p-0 m-0">
         <Header />
-      <main className={styles.main}>
-          <div className={styles.home}>
-          <h1 className={styles.h1}>Hello World</h1>
-          <h1 className={styles.h1}>hallo</h1>
+        <div className="pt-16 w-screen h-auto bg-gray-500">
+          <div className="w-screen ">
+          <h1 className={cssH1}>Hello World</h1>
+          <h1 className={cssH1}>hallo</h1>
           </div>
           
-          <div className={styles.container}>
-            <h1 className={styles.h1}>Watch Out Together</h1>
+          <div className={cssContainer}>
+            <h1 className={cssH1}>Watch Out Together</h1>
           </div>
-          <div className={styles.container}>
-            <h1 className={styles.h1}>Certification</h1>
+          <div className={cssContainer}>
+            <h1 className={cssH1}>Certification</h1>
           </div>
-            
-          <div className={styles.container}></div>
         
+        </div>
       </main>
-      </div>
     </>
   )
 }

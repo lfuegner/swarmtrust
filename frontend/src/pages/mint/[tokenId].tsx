@@ -1,6 +1,5 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
-import styles from '../../styles/Mint.module.scss'
 import Header from '../../components/header'
 import { addAffiliate} from '@/firebase/controller'
 import { useState } from 'react'
@@ -15,13 +14,32 @@ export default function Mint() {
 
 console.log(tokenId)
   
+interface MyDictionary {
+  hash: string;
+  from: string;
+} 
 
-  async function testFirebase(){
-    addAffiliate({
-      affiliateNumber,
-      tokenId,
-    });
+async function handleFirebaseClick(){
+    
+  const response2:MyDictionary = {
+    hash: "rdhsh",
+    from: "erahseh"
   }
+  
+  const hash:string = response2.hash
+  const from:string = response2.from
+  console.log("TEST",hash)
+  console.log(response2)
+  console.log("TEST",from)
+
+  addAffiliate({
+    tokenId: tokenId,
+    hash: hash,
+    from: from,
+    valid: false,
+  });
+}
+
 
 
   while(isNaN(tokenId)){
@@ -48,14 +66,14 @@ console.log(tokenId)
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.body}>
+      <main>
           <Header/>
-          <div className={styles.main}>
-          <h1 className={styles.h1}>TokenID: {tokenId}</h1>
+          <div className="relative flex flex-col justify-center items-center pt-16">
+          <h1 className="">TokenID: {tokenId}</h1>
           </div>
           <button
-          className={styles.button}
-          onClick={testFirebase}>Füge TokenId: {tokenId} hinzu</button>
+          className="w-40 h-12  text-white bg-green-500 rounded-lg opacity-75 hover:opacity-100"
+          onClick={handleFirebaseClick}>Füge TokenId: {tokenId} hinzu</button>
             
 
         

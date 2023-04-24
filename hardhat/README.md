@@ -11,3 +11,7 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.ts
 ```
+
+Ludwig Fügner
+npx hardhat run --network <network> scripts/deploy.ts
+npx hardhat verify --network <network> <address>

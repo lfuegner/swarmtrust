@@ -1,7 +1,6 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
 import Header from '../../components/header'
-import styles from '../../styles/Mint.module.scss'
 import { useState, useEffect} from 'react' 
 import {ethers, BigNumber} from 'ethers';
 import poap from './SWRMPP.json';
@@ -14,18 +13,19 @@ import { onSnapshot } from 'firebase/firestore'
 export default function Mint() {
   const router = useRouter()
   const {tokenID} = router.query
-  console.log(tokenID)
+  //console.log(tokenID) war der undefined log
 
   //Video
   const [accounts, setAccounts] = useState([])
-  const [mintAmount, setMintAmount] = useState(1)
+  const [mintAmount, setMintAmount] = useState<number>(1)
   const isConnected = Boolean(accounts[0]);
 
-  const [affiliateNumber, setAffiliateNumber] = useState<number>(111)
-  const [tokenId, setTokenId] = useState<number>(111)
-  useEffect(()=> onSnapshot(affiliateCollection, (snapshot) => {
+  const [tokenId, setTokenId] = useState<number>(1)
+
+  
+  /* useEffect(()=> onSnapshot(affiliateCollection, (snapshot) => {
     console.log(snapshot)
-  }))
+  })) */
 
   async function connectAccount() {
     if (window.ethereum) {
@@ -36,7 +36,7 @@ export default function Mint() {
     } 
   }
 
-  async function handleMint(){
+  async function handleMintClick(){
     if(window.ethereum){
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -49,9 +49,14 @@ export default function Mint() {
         const response = await contract.mint(BigNumber.from(mintAmount), {
           value: ethers.utils.parseEther((0.02 * mintAmount).toString())
         });
+        const hash:string = response.hash
+        const from:string = response.from
+        
         await addAffiliate({
-          affiliateNumber,
-          tokenId,
+          tokenId: tokenId,
+          hash: hash,
+          from: from,
+          valid: false,
         });
         console.log('response: ',response)
       } catch (err) {
@@ -60,14 +65,34 @@ export default function Mint() {
     }
   }
 
-  
+  interface MyDictionary {
+    hash: string;
+    from: string;
+  } 
 
-  async function testFirebase(){
+  {/*TEST FUNCTION to save to data properly*/}
+  async function handleFirebaseClick(){
+    
+    const response2:MyDictionary = {
+      hash: "rdhsh",
+      from: "erahseh"
+    }
+    
+    const hash:string = response2.hash
+    const from:string = response2.from
+    console.log("TEST",hash)
+    console.log(response2)
+    console.log("TEST",from)
+
     addAffiliate({
-      affiliateNumber,
-      tokenId,
+      tokenId: tokenId,
+      hash: hash,
+      from: from,
+      valid: false,
     });
   }
+
+  const cssButton="w-40 h-12  text-white bg-green-500 rounded-lg opacity-75 hover:opacity-100"
 
   return (
     <>
@@ -77,34 +102,30 @@ export default function Mint() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.body}>
+      <main>
           <Header />
+          <div className="relative flex flex-col justify-center items-center pt-16">
+            {isConnected ? 
+            (<p>Connected</p>) : 
+            (<button
+              className={cssButton}
+              onClick={connectAccount}>
+              Connect
+            </button>)
+            }
+              
+            {isConnected ? 
+            (<button
+              className={cssButton}
+              onClick={handleMintClick}>
+              Mint
+            </button>) : (
+            <p> You must be connected</p>)
+            }
 
-
-          
-          <div className={styles.main}>
-          {isConnected ? 
-          (<p>Connected</p>) : 
-          (<button
-            className={styles.button}
-            onClick={connectAccount}>
-            Connect
-          </button>)
-          }
-            
-          {isConnected ? 
-          (<button
-            className={styles.button}
-            onClick={handleMint}>
-            Mint
-          </button>) : (
-          <p> You must be connected</p>)
-          }
-
-          <button className={styles.button} onClick={testFirebase}>
-            Firestore Eintrag
-          </button>
-            
+            <button className={cssButton} onClick={handleFirebaseClick}>
+              Firestore Eintrag
+            </button>
           </div>
       </main>
     </>
