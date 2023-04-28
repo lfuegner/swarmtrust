@@ -8,15 +8,17 @@ const Header = () => {
   const [isButtonClicked, setIsButtonClicked] = useState(false)
   const [menuClass, setMenuClass] = useState(containerNav)
 
-  /* function handleButtonClick(clicked: boolean) {
+  function handleButtonClick(clicked: boolean) {
     setIsButtonClicked(clicked);
     if(!isButtonClicked) {
-      setMenuClass()
+      setMenuClass(containerNav)
+      console.log('true')
 
     } else {
       setMenuClass(containerNav)
+      console.log('mama')
     }
-  } */
+  } 
     
   return (
     <header 
@@ -50,7 +52,7 @@ const Header = () => {
         >
           <Navbar/>  
           <Hamburger 
-            onButtonClick={()=>{}}
+            onButtonClick={handleButtonClick}//(e)=>{console.log("Moin bin da",e)}
           />      
         </div>
       </div>

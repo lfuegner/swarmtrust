@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 
-import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
-import '@openzeppelin/contracts/access/Ownable.sol';
+import 'hardhat/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol';
+import 'hardhat/node_modules/@openzeppelin/contracts/access/Ownable.sol';
 
 
 // minimiere Storage Variables like mintPrice um Kosten zu sparen

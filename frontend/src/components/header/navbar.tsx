@@ -15,7 +15,7 @@ const Navbar = () => {
         className="z-20 no-underline cursor-pointer"
       >
         <Image
-          src="/frontend/public/Logo.svg" 
+          src="/Logo.svg" 
           alt=" Swarmtrust Logo"
           width={128}
           height={36}

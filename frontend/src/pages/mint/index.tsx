@@ -7,8 +7,9 @@ import poap from './SWRMPP.json';
 import { addAffiliate, affiliateCollection } from '@/firebase/controller'
 import { onSnapshot } from 'firebase/firestore'
 
- const poapAddress = "0x7e25d7Ff02cC2057EcF8D2FBf5d053619CE7b541" //from Etherscan
+const poapAddress = "0x7e25d7Ff02cC2057EcF8D2FBf5d053619CE7b541" //from Etherscan
 
+declare var window: any;
 
 export default function Mint() {
   const router = useRouter()
@@ -52,12 +53,12 @@ export default function Mint() {
         const hash:string = response.hash
         const from:string = response.from
         
-        await addAffiliate({
+        /* await addAffiliate({
           tokenId: tokenId,
           hash: hash,
           from: from,
           valid: false,
-        });
+        }); */
         console.log('response: ',response)
       } catch (err) {
         console.log('error: ',err)
@@ -84,12 +85,12 @@ export default function Mint() {
     console.log(response2)
     console.log("TEST",from)
 
-    addAffiliate({
+    /* addAffiliate({
       tokenId: tokenId,
       hash: hash,
       from: from,
       valid: false,
-    });
+    }); */
   }
 
   const cssButton="w-40 h-12  text-white bg-green-500 rounded-lg opacity-75 hover:opacity-100"
