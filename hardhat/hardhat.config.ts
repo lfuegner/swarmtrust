@@ -12,6 +12,10 @@ const config: HardhatUserConfig = {
       url: process.env.REACT_APP_ALCHEMY_ENDPOINT,
       accounts: [process.env.REACT_APP_PRIVATE_KEY!]
     },
+    sepolia: {
+      url: process.env.REACT_APP_SEPOLIA_ENDPOINT,
+      accounts: [process.env.REACT_APP_PRIVATE_KEY!]
+    }
   },
   etherscan: {
     apiKey: process.env.REACT_APP_API_KEY

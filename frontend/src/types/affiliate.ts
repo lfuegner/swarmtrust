@@ -1,4 +1,6 @@
 export interface AddAffiliateType {
-    affiliateNumber: number;
     tokenId: number
+    hash: string
+    from:string
+    valid: boolean
 }

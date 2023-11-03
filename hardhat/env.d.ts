@@ -3,5 +3,6 @@ declare namespace NodeJS {
         REACT_APP_ALCHEMY_ENDPOINT: string;
         REACT_APP_PRIVATE_KEY: string;
         REACT_APP_API_KEY: string;
+        REACT_APP_SEPOLIA_ENDPOINT:string;
     }
   }

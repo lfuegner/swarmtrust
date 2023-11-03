@@ -2,7 +2,6 @@ import * as React from 'react';
 import Head from 'next/head'
 import Header from '../components/header'
 import Showroom from '../components/showroom'
-import styles from '../styles/Watch-out-together.module.scss'
 import {Trait} from '../components/traits'
 
 export default function WatchOutTogether() {
@@ -27,26 +26,26 @@ export default function WatchOutTogether() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.body}>
+      <main>
         <Header />
-      <main className={styles.main}>
-          <div className={styles.containerPoap}>
-            <div className={styles.poap}>
+      <div className="flex">
+          <div className="flex flex-col pt-16 w-2/3 h-screen bg-gray-500">
+            <div className="text-white">
               <Showroom/>
             </div>
-            <div className={styles.text}>
+            <div className="text-white">
 
                 <p>{defaultText}</p>
             </div>
 
           </div>
-          <div className={styles.containerFilter}>
+          <div className="pt-16 w-1/3 h-screen bg-gray-500 opacity-95">
             <Trait/>
           </div>
 
         
-      </main>
       </div>
+      </main>
 
       <script src="three.min.js"></script>
     </>
