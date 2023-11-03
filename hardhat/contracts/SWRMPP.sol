@@ -1,9 +1,9 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol"; // change to versioned imports for verification
-import "@openzeppelin/contracts/access/Ownable.sol"; // change to versioned imports for verification
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "hardhat/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol"; // change to versioned imports for verification
+import "hardhat/node_modules/@openzeppelin/contracts/access/Ownable.sol"; // change to versioned imports for verification
+import "hardhat/node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol";
 //import "@openzeppelin/contracts/utils/Strings.sol";
 
 // To be implemented

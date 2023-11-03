@@ -1,8 +1,10 @@
 import * as React from 'react';
 //import { MetaMaskInpageProvider } from '@metamask/providers';
 
+
 //const ethereum = window.ethereum as MetaMaskInpageProvider;
 
+declare var window: any
 const MetamaskButton = () => {
 
   const [defaultAccount, setDefaultAccount] = React.useState(null)
@@ -11,7 +13,7 @@ const MetamaskButton = () => {
 
   const connectWallet = () => {
   
-      ethereum.request({method: 'eth_requestAccounts'}).then((result:any) =>
+      window.ethereum.request({method: 'eth_requestAccounts'}).then((result:any) =>
         accountChangeHandler(result[0]))
         .catch (setErrorMessage("Install Metamask")) 
     

@@ -7,8 +7,9 @@ import poap from './SWRMPP.json';
 import { addAffiliate, affiliateCollection } from '@/firebase/controller'
 import { onSnapshot } from 'firebase/firestore'
 
- const poapAddress = "0x7e25d7Ff02cC2057EcF8D2FBf5d053619CE7b541" //from Etherscan
+const poapAddress = "0x7e25d7Ff02cC2057EcF8D2FBf5d053619CE7b541" //from Etherscan
 
+declare var window: any;
 
 export default function Mint() {
   const router = useRouter()
@@ -52,12 +53,20 @@ export default function Mint() {
         const hash:string = response.hash
         const from:string = response.from
         
+<<<<<<< HEAD
         await addAffiliate({
+=======
+        /* await addAffiliate({
+>>>>>>> 08099502e5d7eb7cbadbcc86e856582939ecd273
           tokenId: tokenId,
           hash: hash,
           from: from,
           valid: false,
+<<<<<<< HEAD
         });
+=======
+        }); */
+>>>>>>> 08099502e5d7eb7cbadbcc86e856582939ecd273
         console.log('response: ',response)
       } catch (err) {
         console.log('error: ',err)
@@ -69,6 +78,7 @@ export default function Mint() {
     hash: string;
     from: string;
   } 
+<<<<<<< HEAD
 
   {/*TEST FUNCTION to save to data properly*/}
   async function handleFirebaseClick(){
@@ -85,11 +95,33 @@ export default function Mint() {
     console.log("TEST",from)
 
     addAffiliate({
+=======
+
+  {/*TEST FUNCTION to save to data properly*/}
+  async function handleFirebaseClick(){
+    
+    const response2:MyDictionary = {
+      hash: "rdhsh",
+      from: "erahseh"
+    }
+    
+    const hash:string = response2.hash
+    const from:string = response2.from
+    console.log("TEST",hash)
+    console.log(response2)
+    console.log("TEST",from)
+
+    /* addAffiliate({
+>>>>>>> 08099502e5d7eb7cbadbcc86e856582939ecd273
       tokenId: tokenId,
       hash: hash,
       from: from,
       valid: false,
+<<<<<<< HEAD
     });
+=======
+    }); */
+>>>>>>> 08099502e5d7eb7cbadbcc86e856582939ecd273
   }
 
   const cssButton="w-40 h-12  text-white bg-green-500 rounded-lg opacity-75 hover:opacity-100"
